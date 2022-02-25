@@ -1,0 +1,48 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+
+<button><a class="btn btn-sm btn-info" href="{% url 'tips' %}">Back</a></button>
+<br>
+<div class="row">
+        <div class="col-md">
+            <div class="card card-body">
+                <h5>Films seen</h5>
+                <table class="table table-sm">
+                    <tr>
+                        <th>Username</th>
+                        <th>Film Title</th>
+                        <th>Platform</th>
+                        <th>Comment</th>
+                        <th>Stars</th>
+                    </tr>
+                    {% for tip in tips %}
+                    <tr>
+                        <td> {{tip.user.username}}</td>
+                        <td> {{tip.film.title}}</td>
+                        <td> {{tip.film.piattaforma}}</td>
+                        <td> {{tip.comment}}</td>
+                        <td> {{tip.stars}}</td>
+                    </tr>
+                    {% endfor %}
+                    </table>
+                       
+            </div>
+        </div>
+    </div>
+    <div class="row">
+            <div class="col">
+                <div class="card card-body">
+                    <center><h4>Filter Tips</h4></center>
+                    <br>
+                    <form method="get">
+                        <center>{{ myFilter.form }}</center>
+                    <br>
+                    <br>
+                    <center><button class="btn btn-primary" type="submit">Search</button></center>
+                  </form>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}

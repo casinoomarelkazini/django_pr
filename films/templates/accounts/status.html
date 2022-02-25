@@ -1,0 +1,46 @@
+<br>
+
+<div class="row">
+	<div class="col">
+		<div class="col-md">
+			<div class="card text-center text-white  mb-3" id="films-seen">
+			  	<div class="card-header">
+			  		<h5 class="card-title">Films Seen</h5>
+			  	</div>
+			  	<div class="card-body">
+			    	<h3 class="card-title">{{films_seen}}</h3>
+			  	</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col">
+		<div class="col-md">
+			<div class="card text-center text-white  mb-3" id="films-liked">
+			  	<div class="card-header">
+			  		<h5 class="card-title">Films Liked</h5>
+			  	</div>
+			  	<div class="card-body">
+			    	<h3 class="card-title">{{films_liked}}</h3>
+			  	</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col">
+		<div class="col-md">
+			<div class="card text-center text-white  mb-3" id="films-suggested">
+			  	<div class="card-header">
+			  		<h5 class="card-title">Films Suggested</h5>
+			  	</div>
+			  	<div class="card-body">
+					{% for film in films %}
+					{% if user not in film.watch.all %}
+					<p>{{film.title}}<p>
+					{% endif %}
+					{% endfor %}
+			  	</div>
+			</div>
+		</div>
+	</div>
+</div>

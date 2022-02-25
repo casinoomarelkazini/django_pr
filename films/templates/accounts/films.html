@@ -1,0 +1,76 @@
+{% extends 'accounts/main.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row">
+	<div class="col">
+        <div class="card card-body">
+            <center><h4>Filter Films</h4></center>
+            <br>
+			<form method="get">
+                <center>{{ myFilter.form }}</center>
+            <br>
+            <br>
+		    <center><button class="btn btn-primary" type="submit">Search</button></center>
+		  </form>
+		</div>
+	</div>
+</div>
+<br>
+
+<div class="container-fluid">
+		<div class="row">
+			<div class="col-bg d-flex" style="justify-content: space-between; padding:20px;">
+	{% for film in films %}
+			<div class="card" style="width: 18rem; margin-right: 20px;">
+				<img class="card-img-top" src='{{ film.film_pic.url }}' alt="Card image cap">
+				<div class="card-body">
+				<h5 class="card-title">{{film.title}}</h5>
+				<p class="card-text">{{film.description}}</p>
+				</div>
+				<ul class="list-group list-group-flush">
+				<li class="list-group-item">{{film.category}}</li>
+				</ul>
+
+				<div class="card-body">
+				<center><td><a class="btn btn-sm btn-info" href="{% url 'film_tip' film.id user.id %}">Tip the film!</a></td></center>
+				</form>
+				<br>
+					<form action = "{% url 'like_film' %}" method ="POST" class='ui form'>
+						{% csrf_token %}
+							<input type = 'hidden' name = 'film_id' value ="{{film.id}}">
+							{% if user not in film.liked.all %}
+							<center><button class="btn btn-info" type="submit">Like</button></center>
+							{% else %}
+							<center><button class="btn btn-danger" type="submit">Unlike</button></center>
+							{% endif %}
+					</form>
+					<br>
+					<form action = "{% url 'watch_film' %}" method ="POST" class='ui form'>
+							{% csrf_token %}
+							<input type = 'hidden' name = 'film_id' value ="{{film.id}}">
+							{% if user not in film.watch.all %}
+							<center><button class="btn btn-info" type="submit">Watch</button></center>
+							{% else %}
+						  <center><button class="btn btn-danger" type="submit">Unflag</button></center>
+							{% endif %}
+					</form>
+					<br>
+					<center><strong>{{film.liked.all.count}} Likes</strong></center>
+			</div>
+			</div>
+  {% endfor %}
+		</div>
+	</div>
+</div>
+<div class="row">
+		<div class="col">
+				<div class="card card-body">
+						<form method="get">
+						<center><a class="btn btn-primary" type="submit" href="{% url 'add_film' %}">Add a Film!</a></center>
+					</form>
+				</div>
+		</div>
+</div>
+		
+  {% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+
+<div class="row">
+        <div class="col-md">
+            <div class="card card-body">
+                <h5>Films</h5>
+            </div>
+            <div class="card card-body">
+                <table class="table">
+                    <tr>
+                        <th>Film</th>
+                        <th>Year</th>
+                        <th>Category</th>
+                        <th>Platform</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td> {{film.title}}</td>
+                        <td> {{film.year}}</td>
+                        <td> {{film.category}}</td>
+                        <td> {{film.piattaforma}}</td>
+                        <td> {{film.description}}</td>
+                    </tr>
+                </table>
+                <a class="btn btn-outline-danger  btn-sm btn-block" href="{% url 'delete_film' film.id %}">Delete Film</a>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}

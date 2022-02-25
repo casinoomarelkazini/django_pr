@@ -1,0 +1,27 @@
+{% extends 'accounts/main.html' %}
+
+{% load static %}
+{% block content %}
+<br>
+<div class="row">
+    <div class="col md-6">
+        <div class="card card-body">
+                <form method="POST" action="" enctype="multipart/form-data">
+						{% csrf_token %}
+						<div>
+							{{form.as_p}}
+						</div>
+                <input type="submit" name="film_tip">
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    
+    var form_fields = document.getElementsByTagName('input')
+    form_fields[1].placeholder='Comments...';
+    form_fields[2].placeholder='Stars (max_value=10)';
+        
+</script>
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends 'accounts/main.html' %}
+
+
+{% block content %}
+
+<br>
+<div class="row">
+	<div class="col">
+        <div class="card card-body">
+            <center><h4>Filter Customers</h4></center>
+            <br>
+			<form method="get">
+                <center>{{ myFilter.form }}</center>
+            <br>
+            <br>
+		    <center><button class="btn btn-primary" type="submit">Search</button></center>
+		  </form>
+		</div>
+	</div>
+</div>
+<br>
+<div class="row">
+<div class="col-md-5">
+		<h5>CUSTOMERS:</h5>
+		<hr>
+		<div class="card card-body">
+			<a class="btn btn-primary  btn-sm btn-block" href="">Customers list</a>
+			<table class="table table-sm">
+				<tr>
+					<th></th>
+					<th>Customer</th>
+					<th>Email</th>
+				</tr>
+
+				{% for user in users %}
+					<tr>
+                        <td><a class="btn btn-sm btn-info" href="{% url 'userPage' user.id %}">View</a></td>
+                        </form>
+						<td>{{user.username}}</td>
+						<td>{{user.email}}</td>
+					</tr>
+				{% endfor %}
+
+			</table>
+		</div>
+	</div>
+        <div class="col-md-7">
+            <h5>FILMS</h5>
+            <hr>
+            <div class="card card-body">
+                <a class="btn btn-primary  btn-sm btn-block" href="">List of films</a>
+                <table class="table table-sm">
+                    <tr>
+                        <th>View</th>
+                        <th>Film</th>
+                        <th>Year</th>
+                        <th>Category</th>
+                        <th>Platform</th>
+                    </tr>
+
+                    {% for film in films %}
+                        <tr>
+                            <td><a class="btn btn-sm btn-info" href="{% url 'film' film.id %}">View</a></td>
+                            <td>{{film.title}}</td>
+                            <td>{{film.year}}</td>
+                            <td>{{film.category}}</td>
+                            <td>{{film.piattaforma}}</td>
+                        </tr>
+                    {% endfor %}
+            
+                </table>
+            </div>
+        </div>
+    
+    </div>
+{% endblock %}

@@ -1,0 +1,25 @@
+#logo{
+}
+    
+    body{
+        background-color: #ebeff5;
+        }
+    
+    
+    #films-seen{
+        background-color: #4cb4c7;
+    }
+    
+    
+    #films-liked{
+        background-color: #7abecc;
+    }
+    
+    #films-suggested{
+        background-color: #7CD1C0;
+    }
+
+
+.add_new {
+    background-color: #ff0000 ;
+}

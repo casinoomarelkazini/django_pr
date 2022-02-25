@@ -1,0 +1,61 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+
+<br>
+<center><h5>Hi {{user.username}}</h5></center>
+<br>
+<div class="row">
+	<div class="col-md">
+		{% if request.user.is_staff == False %}
+		<div class="card card-body">
+			<h5>Customer:</h5>
+			<hr>
+			<a class="btn btn-outline-info  btn-sm btn-block" href="{% url 'update_user' user.id %}">Update Customer</a>
+			<a class="btn btn-outline-danger  btn-sm btn-block" href="{% url 'delete_user' user.id %}">Delete Customer</a>
+		</div>
+		{% endif %}
+	</div>
+
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Contact Information</h5>
+            <hr>
+            <p>Username:  {{user.username}}</p>
+			<p>Email:  {{user.email}}</p>
+		</div>
+	</div>
+</div>
+<br>
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Films seen</h5>
+			<table class="table table-sm">
+				<tr>
+					<th>Title</th>
+					<th>Year</th>
+					<th>Category</th>
+					<th>Platform</th>
+					<th>Seen</th>
+				</tr>
+                {% for seen in seens %}
+				<tr>
+                    {% if seen.value == True %}
+					<td> {{seen.film.title}}</td>
+					<td> {{seen.film.year}}</td>
+					<td> {{seen.film.category}}</td>
+					<td> {{seen.film.piattaforma}}</td>
+					<td> {{seen.value}}</td>
+                    {% endif %}
+				</tr>
+				{% endfor %}
+				</table>
+		</div>
+	</div>
+</div>
+
+{% include 'accounts/status.html' %}
+
+{% endblock %}
